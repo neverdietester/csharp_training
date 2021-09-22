@@ -12,13 +12,29 @@ namespace WebAddressbookTests
 {
     public class HelperBase
     {
-        protected ApplicationManager manager;
-        protected IWebDriver driver;
+        public ApplicationManager manager;
+        public IWebDriver driver;
         
         public HelperBase (ApplicationManager manager)
         {
             this.manager = manager;
             driver = manager.Driver;
+        }
+        public void Type(By locator, string text)
+        {
+            if (text != null)
+            {
+                driver.FindElement(locator).Clear();
+                driver.FindElement(locator).SendKeys(text);
+            }
+        }
+        public void TypeSelected(By locator, string text)
+        {
+            if (text != null)
+            {
+                driver.FindElement(locator).Click();
+                new SelectElement(driver.FindElement(locator)).SelectByText(text);
+            }
         }
     }
 }

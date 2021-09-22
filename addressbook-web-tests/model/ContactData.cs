@@ -23,11 +23,11 @@ namespace WebAddressbookTests
         private string email2 = "";
         private string email3 = "";
         private string homepage = "";
-        private string bday = "";
-        private string bmonth = "";
+        private string bday = "-";
+        private string bmonth = "-";
         private string byear = "";
-        private string aday = "";
-        private string amonth = "";
+        private string aday = "-";
+        private string amonth = "-";
         private string ayear = "";
         private string address2 = "";
         private string phone2 = "";

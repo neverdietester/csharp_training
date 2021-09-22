@@ -10,22 +10,12 @@ namespace WebAddressbookTests
 {
     public class TestBase
     {
-        protected ApplicationManager app;
+        public ApplicationManager app;
 
         [SetUp]
-        protected void SetupTest()
+        public void SetupTest()
         {
-            app = new ApplicationManager();
-            
-            app.Navigator.GoToHomePage();
-            app.Auth.Login(new AccountData("admin", "secret"));
-            app.Auth.Logout();
-        }
-
-        [TearDown]
-        protected void TeardownTest()
-        {
-            app.Stop();
+            app = ApplicationManager.GetInstance();
         }
 
     }
