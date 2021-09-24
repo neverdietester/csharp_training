@@ -16,7 +16,7 @@ namespace WebAddressbookTests
             newData.Lastname = null;
             newData.Bday = null;
 
-            app.Contacts.Modify(1, newData);
+            app.Contacts.Modify(newData);
         }
     }
 }
