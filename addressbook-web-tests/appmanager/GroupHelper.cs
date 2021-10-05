@@ -78,9 +78,29 @@ namespace WebAddressbookTests
         }
         public GroupHelper SelectGroup(int index)
         {
-            driver.FindElement(By.XPath("//div[@id='content']/form/span[" + index + "]/input")).Click();
+                if (IsFindItem())
+                {
+                    SelectItem(index);
+                }
+                GroupData group = new GroupData("aaa");
+                group.Header = "";
+                group.Footer = "";
+                Create(group);
+                SelectItem(index);
+
             return this;
         }
+
+        public void SelectItem(int index)
+        {
+            driver.FindElement(By.XPath("//div[@id='content']/form/span[" + index + "]/input")).Click();
+        }
+
+        public bool IsFindItem()
+        {
+            return IsElementPresent(By.Name("selected[]"));
+        }
+
         public GroupHelper RemoveGroup()
         {
             driver.FindElement(By.Name("delete")).Click();

@@ -63,8 +63,26 @@ namespace WebAddressbookTests
 
         public ContactHelper SelectContact()
         {
-            driver.FindElement(By.Name("selected[]")).Click();
+
+            if (IsFindItem())
+            {
+                SelectItem();
+            }
+            ContactData contact = new ContactData("a");
+            contact.Lastname = ("b");
+            CreateContact(contact);
+            SelectItem();
             return this;
+        }
+
+        private void SelectItem()
+        {
+            driver.FindElement(By.Name("selected[]")).Click();
+        }
+
+        private bool IsFindItem()
+        {
+            return IsElementPresent(By.Name("selected[]"));
         }
 
         public ContactHelper FillContactForm(ContactData contact)
