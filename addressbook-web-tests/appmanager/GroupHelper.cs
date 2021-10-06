@@ -77,18 +77,9 @@ namespace WebAddressbookTests
             return this;
         }
         public GroupHelper SelectGroup(int index)
-        {
-                if (IsFindItem())
-                {
-                    SelectItem(index);
-                }
-                GroupData group = new GroupData("aaa");
-                group.Header = "";
-                group.Footer = "";
-                Create(group);
+        {      
                 SelectItem(index);
-
-            return this;
+                return this;
         }
 
         public void SelectItem(int index)
@@ -96,7 +87,7 @@ namespace WebAddressbookTests
             driver.FindElement(By.XPath("//div[@id='content']/form/span[" + index + "]/input")).Click();
         }
 
-        public bool IsFindItem()
+        public bool IsGroupExists()
         {
             return IsElementPresent(By.Name("selected[]"));
         }
