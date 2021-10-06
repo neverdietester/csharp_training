@@ -22,8 +22,13 @@ namespace WebAddressbookTests
                 app.Contacts.CreateContact(contact);
                 app.Contacts.SelectItem();
             }
+            
+            List<ContactData> oldContacts = app.Contacts.GetContactList();
 
             app.Contacts.Remove();
+            
+            List<ContactData> newContacts = app.Contacts.GetContactList();
+            Assert.AreEqual(oldContacts.Count - 1, newContacts.Count);
         }
     }
 }

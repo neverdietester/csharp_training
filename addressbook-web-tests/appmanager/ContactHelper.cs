@@ -129,5 +129,21 @@ namespace WebAddressbookTests
             return this;
         }
 
+        internal List<ContactData> GetContactList()
+        {
+            {
+                List<ContactData> contact = new List<ContactData>();
+                manager.Navigator.GoToHomePage();
+                ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
+                foreach (IWebElement element in elements)
+                {
+
+                    contact.Add(new ContactData(element.Text));
+                }
+
+                return contact;
+            }
+        }
+
     }
 }
