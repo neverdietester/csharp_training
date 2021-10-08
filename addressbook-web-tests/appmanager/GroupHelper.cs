@@ -84,7 +84,7 @@ namespace WebAddressbookTests
 
         public void SelectItem(int index)
         {
-            driver.FindElement(By.XPath("//div[@id='content']/form/span[" + index + "]/input")).Click();
+            driver.FindElement(By.XPath("//div[@id='content']/form/span[" + (index+1) + "]/input")).Click();
         }
 
         public bool IsGroupExists()

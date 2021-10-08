@@ -52,6 +52,7 @@ namespace WebAddressbookTests
         public ContactHelper ConfirmationRemoval()
         {
             driver.SwitchTo().Alert().Accept();
+            driver.FindElement(By.CssSelector("div.msgbox"));
             return this;
         }
 
@@ -135,6 +136,7 @@ namespace WebAddressbookTests
                 List<ContactData> contact = new List<ContactData>();
                 manager.Navigator.GoToHomePage();
                 ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
+                
                 foreach (IWebElement element in elements)
                 {
 
