@@ -136,10 +136,11 @@ namespace WebAddressbookTests
                 List<ContactData> contact = new List<ContactData>();
                 manager.Navigator.GoToHomePage();
                 ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
-                
+
                 foreach (IWebElement element in elements)
                 {
 
+                    IList<IWebElement> cells = element.FindElements(By.TagName("td"));
                     contact.Add(new ContactData(element.Text));
                 }
 
