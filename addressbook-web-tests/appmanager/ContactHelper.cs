@@ -141,7 +141,11 @@ namespace WebAddressbookTests
                 {
 
                     IList<IWebElement> cells = element.FindElements(By.TagName("td"));
-                    contact.Add(new ContactData(element.Text));
+                    foreach (IWebElement cell in cells)
+                    {
+                        contact.Add(new ContactData(cell.Text));
+                    }
+                    //contact.Add(new ContactData(element.Text));
                 }
 
                 return contact;
