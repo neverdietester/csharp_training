@@ -13,21 +13,21 @@ namespace WebAddressbookTests
     public class ContactHelper : HelperBase
     {
         public ContactHelper(ApplicationManager manager)
-            : base (manager)
+            : base(manager)
         {
         }
 
         public ContactHelper CreateContact(ContactData contact)
         {
             manager.Navigator.InitNewContactCreation();
-            
+
             FillContactForm(contact);
-            EnterContactCreation();
+            SubmitContactCreation();
             ReturnToContactPage();
             return this;
         }
 
-        public ContactHelper Modify( ContactData newData)
+        public ContactHelper Modify(ContactData newData)
         {
             manager.Navigator.GoToHomePage();
 
@@ -59,6 +59,7 @@ namespace WebAddressbookTests
         public ContactHelper RemoveContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            contactCache = null;
             return this;
         }
 
@@ -104,12 +105,13 @@ namespace WebAddressbookTests
             Type(By.Name("address2"), contact.Address2);
             Type(By.Name("phone2"), contact.Phone2);
             Type(By.Name("notes"), contact.Notes);
-           
+
             return this;
         }
-        public ContactHelper EnterContactCreation()
+        public ContactHelper SubmitContactCreation()
         {
             driver.FindElement(By.XPath("//div[@id='content']/form/input[21]")).Click();
+            contactCache = null;
             return this;
         }
         public ContactHelper ReturnToContactPage()
@@ -121,6 +123,7 @@ namespace WebAddressbookTests
         public ContactHelper SubmitContactModification()
         {
             driver.FindElement(By.Name("update")).Click();
+            contactCache = null;
             return this;
         }
 
@@ -130,10 +133,15 @@ namespace WebAddressbookTests
             return this;
         }
 
+
+        private List<ContactData> contactCache = null;
+        
+        
         public List<ContactData> GetContactList()
-        {
             {
-                List<ContactData> contact = new List<ContactData>();
+            if (contactCache == null)
+            {
+                contactCache = new List<ContactData>();
                 manager.Navigator.GoToHomePage();
                 ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
 
@@ -142,13 +150,11 @@ namespace WebAddressbookTests
 
                     IList<IWebElement> cells = element.FindElements(By.TagName("td"));
                     string firstname = cells[2].Text;
-                    string lastname = cells[3].Text;
-                    contact.Add(new ContactData(cells[2].Text, cells[3].Text));
+                    string lastname = cells[1].Text;
+                    contactCache.Add(new ContactData(cells[2].Text, cells[1].Text));
                 }
-
-                return contact;
             }
-        }
-
+                return new List<ContactData>(contactCache);
+            }
     }
 }

@@ -54,7 +54,15 @@ namespace WebAddressbookTests
             {
                 return true;
             }
-            return Firstname == other.Firstname;
+            {
+                if (Firstname == other.Firstname && Lastname == other.Lastname)
+                {
+                    return true;
+                }
+                else 
+                    return false; // объекты не равны, потому что имена не равны
+                              //return Firstname == other.Firstname;
+            }
         }
 
         public override int GetHashCode()
