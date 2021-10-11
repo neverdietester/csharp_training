@@ -38,7 +38,7 @@ namespace WebAddressbookTests
             ReturnToContactPage();
             return this;
         }
-
+                
         public ContactHelper Remove()
         {
             manager.Navigator.GoToHomePage();
@@ -46,6 +46,7 @@ namespace WebAddressbookTests
             SelectContact();
             RemoveContact();
             ConfirmationRemoval();
+            manager.Navigator.GoToHomePage();
             return this;
         }
 
@@ -156,5 +157,9 @@ namespace WebAddressbookTests
             }
                 return new List<ContactData>(contactCache);
             }
+        public int GetContactCount()
+        {
+            return driver.FindElements(By.Name("entry")).Count;
+        }
     }
 }
