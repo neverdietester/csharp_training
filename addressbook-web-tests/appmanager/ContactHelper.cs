@@ -130,7 +130,7 @@ namespace WebAddressbookTests
             return this;
         }
 
-        internal List<ContactData> GetContactList()
+        public List<ContactData> GetContactList()
         {
             {
                 List<ContactData> contact = new List<ContactData>();
@@ -141,11 +141,9 @@ namespace WebAddressbookTests
                 {
 
                     IList<IWebElement> cells = element.FindElements(By.TagName("td"));
-                    foreach (IWebElement cell in cells)
-                    {
-                        contact.Add(new ContactData(cell.Text));
-                    }
-                    //contact.Add(new ContactData(element.Text));
+                    string firstname = cells[2].Text;
+                    string lastname = cells[3].Text;
+                    contact.Add(new ContactData(cells[2].Text, cells[3].Text));
                 }
 
                 return contact;
