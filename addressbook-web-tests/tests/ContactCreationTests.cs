@@ -14,7 +14,7 @@ namespace WebAddressbookTests
         public void ContactsCreationTest()
         {
             ContactData contact = new ContactData("a");
-            contact.Lastname = ("b");
+            contact.LastName = ("b");
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();
 

@@ -17,14 +17,14 @@ namespace WebAddressbookTests
             if (app.Contacts.IsContactExists() != true)
             {
                 ContactData contact = new ContactData("a");
-                contact.Lastname = ("b");
+                contact.LastName = ("b");
                 app.Contacts.CreateContact(contact);
                 app.Contacts.SelectItem();
             }
 
             ContactData newData = new ContactData("lol");
-            newData.Lastname = null;
-            newData.Bday = null;
+            newData.LastName = null;
+            newData.BDay = null;
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();
 
@@ -33,7 +33,7 @@ namespace WebAddressbookTests
             Assert.AreEqual(oldContacts.Count, app.Contacts.GetContactCount());
 
             List<ContactData> newContacts = app.Contacts.GetContactList();
-            oldContacts[0].Firstname = newData.Firstname;
+            oldContacts[0].FirstName = newData.FirstName;
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
