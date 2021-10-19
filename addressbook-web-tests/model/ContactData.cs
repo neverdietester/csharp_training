@@ -63,7 +63,7 @@ namespace WebAddressbookTests
             {
                 return "";
             }
-            return Regex.Replace(phone, "[ -()]", "") + "\r\n";
+            return Regex.Replace(phone, "[ )(-]", "") + "\r\n";
 
         }
         private string CleanUp1(string email)
@@ -72,8 +72,7 @@ namespace WebAddressbookTests
             {
                 return "";
             }
-            return Regex.Replace(email, "[ -()]", "") + "\r\n";
-            ;
+            return Regex.Replace(email, "[ )(-]", "") + "\r\n";
         }
 
         public string FirstName { get; set; }

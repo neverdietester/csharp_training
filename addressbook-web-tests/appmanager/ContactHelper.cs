@@ -202,6 +202,41 @@ namespace WebAddressbookTests
                 Email3 = email3
             };
         }
+
+        public ContactData GetContactDetailsFromIditForm(int v)
+        {
+            manager.Navigator.GoToHomePage();
+            ViewContactDetails(0);
+            string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
+            string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
+            string address = driver.FindElement(By.Name("address")).GetAttribute("value");
+
+            string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
+            string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
+            string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
+
+            string email = driver.FindElement(By.Name("email")).GetAttribute("value");
+            string email2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
+            string email3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
+
+            return new ContactData(firstName, lastName)
+            {
+                Address = address,
+                HomePhone = homePhone,
+                MobilePhone = mobilePhone,
+                WorkPhone = workPhone,
+                Email = email,
+                Email2 = email2,
+                Email3 = email3
+            };
+        }
+        public void ViewContactDetails(int index)
+            {
+                driver.FindElements(By.Name("entry"))[index]
+                      .FindElements(By.TagName("td"))[6].
+                      FindElement(By.TagName("a")).Click();
+            }
+
         public void InitContactModification(int index)
         {
             driver.FindElements(By.Name("entry"))[index]

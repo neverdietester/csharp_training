@@ -84,6 +84,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="tests\GroupCreationTests.cs" />
     <Compile Include="tests\ContactCreationTests.cs" />
+    <Compile Include="tests\ContactDetailsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

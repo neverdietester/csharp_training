@@ -10,13 +10,13 @@ namespace WebAddressbookTests
 {
 
     [TestFixture]
-    public class ContactInformationTests : AuthTestBase
+    public class ContactDetailsTests : AuthTestBase
     {
         [Test]
-        public void TestContactInformation()
+        public void TestContactDetails()
         {
             ContactData fromTable = app.Contacts.GetContactInformationFromTable(0);
-            ContactData fromForm = app.Contacts.GetContactInformationFromIditForm(0);
+            ContactData fromForm = app.Contacts.GetContactDetailsFromIditForm(0);
 
             //verification
 
@@ -25,6 +25,8 @@ namespace WebAddressbookTests
             Assert.AreEqual(fromTable.AllEmails, fromForm.AllEmails);
             Assert.AreEqual(fromTable.AllPhones, fromForm.AllPhones);
         }
+
+
 
     }
 }
