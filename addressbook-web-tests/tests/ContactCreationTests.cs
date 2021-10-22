@@ -5,6 +5,8 @@ using System.Threading;
 using System.Collections.Generic;
 using NUnit.Framework;
 using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
 using Newtonsoft.Json;
 
 namespace WebAddressbookTests
@@ -50,7 +52,15 @@ namespace WebAddressbookTests
                 File.ReadAllText(@"contacts.json"));
         }
 
-        [Test, TestCaseSource("ContactDataFromJsonFile")]
+        public static IEnumerable<ContactData> ContactDataFromXmlFile()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+            return (List<ContactData>)
+                new XmlSerializer(typeof(List<ContactData>))
+                .Deserialize(new StreamReader(@"contacts.xml"));
+        }
+
+        [Test, TestCaseSource("ContactDataFromXmlFile")]
         public void ContactsCreationTest(ContactData contact)
         {
             List<ContactData> oldContacts = app.Contacts.GetContactList();
