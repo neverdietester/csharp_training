@@ -15,7 +15,7 @@ namespace addressbook_test_data_generators
 {
     class Program
     {
-        static void MainGroups(string[] args)
+        static void Main(string[] args)
         {
             int count = Convert.ToInt32(args[0]);
             string filename = args[1];
@@ -103,50 +103,5 @@ namespace addressbook_test_data_generators
             writer.Write (JsonConvert.SerializeObject(groups, Newtonsoft.Json.Formatting.Indented));
         }
 
-        static void MainContact(string[] args)
-        {
-            int count = Convert.ToInt32(args[0]);
-            string filename = args[1];
-            string format = args[2];
-
-            List<GroupData> groups = new List<GroupData>();
-            for (int i = 0; i < count; i++)
-            {
-                groups.Add(new GroupData(TestBase.GenerateRandomString(10))
-                {
-                    Header = TestBase.GenerateRandomString(10),
-                    Footer = TestBase.GenerateRandomString(10)
-                });
-            }
-            if (format == "excel")
-            {
-                writeGroupsToExcelFile(groups, filename);
-            }
-            else
-            {
-                StreamWriter writer = new StreamWriter(filename);
-                if (format == "csv")
-                {
-                    writeGroupsToCsvFile(groups, writer);
-                }
-
-                else if (format == "xml")
-                {
-                    writeGroupsToXmlFile(groups, writer);
-                }
-
-                else if (format == "json")
-                {
-                    writeGroupsToJsonFile(groups, writer);
-                }
-                else
-                {
-                    System.Console.Out.Write("Unrecognized format " + format);
-                }
-                writer.Close();
-            }
-        }
-
-    
     }
 }
