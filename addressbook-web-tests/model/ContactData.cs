@@ -61,13 +61,23 @@ namespace WebAddressbookTests
             return FirstName.CompareTo(other.FirstName);
         }
 
-        private string CleanUp(string phone)
+        private string CleanUpPhone(string phone)
         {
             if (phone == null || phone == "")
             {
                 return "";
             }
             return Regex.Replace(phone, "[ )(-]", "") + "\r\n";
+
+        }
+
+        private string CleanUpEmail(string email)
+        {
+            if (email == null || email == "")
+            {
+                return "";
+            }
+            return (email) + "\r\n";
 
         }
 
@@ -106,7 +116,7 @@ namespace WebAddressbookTests
                 }
                 else
                 {
-                    return (CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone)).Trim();
+                    return (CleanUpPhone(HomePhone) + CleanUpPhone(MobilePhone) + CleanUpPhone(WorkPhone)).Trim();
                 }
             }
             set
@@ -125,7 +135,7 @@ namespace WebAddressbookTests
                }
               else
               {
-                   return (Email+"\r\n") + (Email2 + "\r\n") +Email3;
+                   return (CleanUpEmail(Email) + CleanUpEmail(Email2) + CleanUpEmail(Email3)).Trim();
               }
             }
            set
@@ -133,8 +143,6 @@ namespace WebAddressbookTests
                 allEmails = value;
             }
        }
-
-        
 
         public string Id { get; set; }
 
