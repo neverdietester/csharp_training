@@ -52,7 +52,7 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public GroupHelper DeleteGroup(int v)
+        public GroupHelper Remove(int v)
         {
             manager.Navigator.GoToGroupPage();
             

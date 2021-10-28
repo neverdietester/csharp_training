@@ -158,8 +158,6 @@ namespace WebAddressbookTests
         [Column(Name = "notes")]
         public string Notes { get; set; }
 
-        [Column(Name = "id"), PrimaryKey, Identity, NotNull]
-
         public string AllPhones
         {
             get
@@ -198,6 +196,7 @@ namespace WebAddressbookTests
             }
        }
 
+        [Column(Name = "id"), PrimaryKey, Identity, NotNull]
         public string Id { get; set; }
 
         public static List<ContactData> GetAll()

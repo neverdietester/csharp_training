@@ -28,11 +28,11 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper Modify(ContactData newData)
+        public ContactHelper Modify(int p, ContactData newData)
         {
             manager.Navigator.GoToHomePage();
 
-            SelectContact();
+            SelectContact(p);
             InitContactModification(0);
             FillContactForm(newData);
             SubmitContactModification();
@@ -65,15 +65,22 @@ namespace WebAddressbookTests
 
         public ContactHelper SelectContact(String id)
         {
-            driver.FindElement(By.XPath("//input[@id]")).Click();
+            driver.FindElement(By.XPath("//input[@id='" + id + "']")).Click();
             return this;
         }
 
-        public ContactHelper Remove()
+        public ContactHelper SelectContact(int index)
+        {
+            //driver.FindElement(By.XPath("//div[@id='content']/form/tbody/tr/td[" + (index + 1) + "]/input")).Click();
+            driver.FindElement(By.XPath("//input[@id='" + (index + 1) + "']")).Click();
+            return this;
+        }
+
+        public ContactHelper Remove(int v)
         {
             manager.Navigator.GoToHomePage();
 
-            SelectContact();
+            SelectContact(v);
             RemoveContact();
             ConfirmationRemoval();
             manager.Navigator.GoToHomePage();
@@ -92,17 +99,6 @@ namespace WebAddressbookTests
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
             contactCache = null;
             return this;
-        }
-
-        public ContactHelper SelectContact()
-        {
-            SelectItem();
-            return this;
-        }
-
-        public void SelectItem()
-        {
-            driver.FindElement(By.Name("selected[]")).Click();
         }
 
         public bool IsContactExists()

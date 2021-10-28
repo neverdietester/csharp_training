@@ -20,7 +20,6 @@ namespace WebAddressbookTests
                 ContactData contact = new ContactData("a");
                 contact.LastName = ("b");
                 app.Contacts.CreateContact(contact);
-                app.Contacts.SelectItem();
             }
             
             List<ContactData> oldContacts = ContactData.GetAll();

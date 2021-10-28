@@ -19,7 +19,6 @@ namespace WebAddressbookTests
                 ContactData contact = new ContactData("a");
                 contact.LastName = ("b");
                 app.Contacts.CreateContact(contact);
-                app.Contacts.SelectItem();
             }
 
             ContactData newData = new ContactData("lol");
@@ -42,7 +41,6 @@ namespace WebAddressbookTests
 
             foreach (ContactData contact in newContacts)
             {
-                //if (group.Id == oldData.Id)
                 if (contact.Id == toBeModify.Id)
                 {
                     Assert.AreEqual(newData.FirstName, contact.FirstName);
