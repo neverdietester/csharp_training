@@ -25,7 +25,6 @@ namespace WebAddressbookTests
         {
            
         }
-
         public ContactData(string firstname, string lastname)
         {
             FirstName = firstname;
@@ -158,6 +157,17 @@ namespace WebAddressbookTests
         [Column(Name = "notes")]
         public string Notes { get; set; }
 
+        [Column(Name = "id"), PrimaryKey, Identity, NotNull]
+        public string Id { get; set; }
+
+        public static List<ContactData> GetAll()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                return (from g in db.Contacts select g).ToList();
+            }
+        }
+
         public string AllPhones
         {
             get
@@ -195,17 +205,6 @@ namespace WebAddressbookTests
                 allEmails = value;
             }
        }
-
-        [Column(Name = "id"), PrimaryKey, Identity, NotNull]
-        public string Id { get; set; }
-
-        public static List<ContactData> GetAll()
-        {
-            using (AddressBookDB db = new AddressBookDB())
-            {
-                return (from g in db.Contacts select g).ToList();
-            }
-        }
 
     }
 }
