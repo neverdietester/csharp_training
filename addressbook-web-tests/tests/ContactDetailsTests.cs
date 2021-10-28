@@ -16,7 +16,7 @@ namespace WebAddressbookTests
         public void TestContactDetails()
         {
             ContactData fromTable = app.Contacts.GetContactInformationFromTable(0);
-            ContactData fromForm = app.Contacts.GetContactDetailsFromIditForm(0);
+            ContactData fromForm = app.Contacts.GetContactDetailsFromForm(0);
 
             //verification
 
