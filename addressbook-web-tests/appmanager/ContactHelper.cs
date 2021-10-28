@@ -71,7 +71,6 @@ namespace WebAddressbookTests
 
         public ContactHelper SelectContact(int index)
         {
-            //driver.FindElement(By.XPath("//div[@id='content']/form/tbody/tr/td[" + (index + 1) + "]/input")).Click();
             driver.FindElement(By.XPath("//input[@id='" + (index + 1) + "']")).Click();
             return this;
         }
