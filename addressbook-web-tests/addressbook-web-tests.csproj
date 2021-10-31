@@ -120,10 +120,12 @@
   <ItemGroup>
     <Compile Include="appmanager\AuthTestBase.cs" />
     <Compile Include="model\AddressBookDB.cs" />
+    <Compile Include="tests\AddingContactToGroupTests.cs" />
     <Compile Include="tests\ContactInformationTests.cs" />
     <Compile Include="tests\ContactModificationTests.cs" />
     <Compile Include="tests\ContactRemovalTests.cs" />
     <Compile Include="tests\ContactTestBase.cs" />
+    <Compile Include="tests\GroupContactRelation.cs" />
     <Compile Include="tests\GroupModificationTests.cs" />
     <Compile Include="model\AccountData.cs" />
     <Compile Include="appmanager\ApplicationManager.cs" />
