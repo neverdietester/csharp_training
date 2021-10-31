@@ -278,38 +278,15 @@ namespace WebAddressbookTests
         {
             manager.Navigator.GoToHomePage();
             ViewContactDetails(0);
-            //string contactName = driver.FindElements(By.Id("content")).FindElements(By.TagName("b")).getText();
-            //string contactName = driver.FindElement(By.XPath("//div[@id='content']/b");
-            string allName = driver.FindElement(By.Id("content")).FindElement(By.TagName("b")).Text;
 
-            /* IList<IWebElement> cells = driver.FindElements(By.Name("content"))[index]
-                .FindElements(By.TagName("br"));
-             string address = cells[3].Text;
-             string homePhone = cells[5].Text;
-             string mobilePhone = cells[6].Text;
-             string workPhone = cells[7].Text;
-             string email = cells[9].Text;
-             string email2 = cells[10].Text;
-             string email3 = cells[11].Text;*/
+            string allInfo = driver.FindElement(By.Id("content")).Text;
 
-            string allInfo = driver.FindElement(By.Id("content")).FindElement(By.TagName("br")).Text;
-            string allEmails = driver.FindElement(By.Id("content")).FindElement(By.TagName("br")).FindElement(By.TagName("a")).Text;
-
-            return new ContactData(allName)
+            return new ContactData(allInfo)
             {
-                AllInfo = allInfo,
-                AllEmails = allEmails
-
-
-                /*Address = address,
-                HomePhone = homePhone,
-                MobilePhone = mobilePhone,
-                WorkPhone = workPhone,
-                Email = email,
-                Email2 = email2,
-                Email3 = email3*/
+                AllInfo = allInfo
             };
         }
+
         public void ViewContactDetails(int index)
             {
                 driver.FindElements(By.Name("entry"))[index]

@@ -15,7 +15,6 @@ namespace WebAddressbookTests
     {
         public string allPhones;
         public string allEmails;
-        public string AllInfo;
 
         public ContactData(string firstname)
         {
@@ -208,6 +207,81 @@ namespace WebAddressbookTests
                 allEmails = value;
             }
        }
+
+        public string AllEditInfo
+        {
+            get
+            {
+                return CleanUpFirstName(FirstName) + CleanUpLastName(LastName) + CleanUpLastAddress(Address)
+                    + CleanUpHPhone(HomePhone) + CleanUpMPhone(MobilePhone) + CleanUpWPhone(WorkPhone)
+                    + AllEmails;
+            }
+            set
+            {
+                AllEditInfo = value;
+            }
+        }
+
+        private string CleanUpHPhone(string phone)
+        {
+            if (phone == null || phone == "")
+            {
+                return "";
+            }
+            return ("H: " + phone + "\r\n");
+
+        }
+
+        private string CleanUpMPhone(string phone)
+        {
+            if (phone == null || phone == "")
+            {
+                return "";
+            }
+            return ("M: " + phone + "\r\n");
+
+        }
+
+        private string CleanUpWPhone(string phone)
+        {
+            if (phone == null || phone == "")
+            {
+                return "";
+            }
+            return ("W: " + phone + "\r\n\r\n");
+
+        }
+        private string CleanUpFirstName(string firstname)
+        {
+            if (firstname == null || firstname == "")
+            {
+                return "";
+            }
+            return (firstname) + " ";
+
+        }
+
+        private string CleanUpLastName(string lastname)
+        {
+            if (lastname == null || lastname == "")
+            {
+                return "";
+            }
+            return (lastname) + "\r\n";
+
+        }
+        private string CleanUpLastAddress(string address)
+        {
+            if (address == null || address == "")
+            {
+                return "";
+            }
+            return (address) + "\r\n\r\n";
+
+        }
+
+
+        public string AllInfo { get; set; }
 
     }
 }
