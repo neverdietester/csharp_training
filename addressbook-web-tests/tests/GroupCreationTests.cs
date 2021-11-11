@@ -146,14 +146,14 @@ namespace WebAddressbookTests
             System.Console.Out.WriteLine(end.Subtract(start));
         }
 
-        [Test]
+        /*[Test]
         public void TestDB()
         {
-            foreach (ContactData contact in ContactData.GetAll())
+            foreach (ContactData contact in GroupData.GetContactsInGroup())
             {
                 System.Console.Out.WriteLine(contact.Deprecated);
             }
-        }
+        }*/
 
     }
 }

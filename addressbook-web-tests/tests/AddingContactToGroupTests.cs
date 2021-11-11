@@ -30,41 +30,95 @@ namespace WebAddressbookTests
                 app.Groups.Create(newgroup);
             }
 
+            List<GroupData> groups = GroupData.GetAll();
+            GroupData group = groups[0];
 
-            /*GroupData group = GroupData.GetAll()[0];
-            List<ContactData> oldList = group.GetContacts();
-            ContactData contact = ContactData.GetAll().Except(oldList).First();*/
-
-            foreach (ContactData contact in ContactData.GetAll())
-            { 
-                if (contact)
+            List<ContactData> oldList = ContactData.GetAll();
+            ContactData contact = oldList[0];
+            int numberOfGroups = groups.Count();
+            for (int i = 0; i < numberOfGroups; i++)
+            {
+                group = groups[i];
+                oldList = group.GetContacts();
+                try
+                {
+                    contact = ContactData.GetAll().Except(oldList).First();
+                    break;
+                }
+                catch (ArgumentNullException ex)
+                {
+                    if ((numberOfGroups - 1) == i)
+                    {
+                        ContactData newcontact = new ContactData("a");
+                        newcontact.LastName = ("b");
+                        app.Contacts.CreateContact(newcontact);
+                        contact = ContactData.GetAll()[0];
+                    }
+                }
             }
-
 
             app.Contacts.AddContactToGroup(contact, group);
 
-
             List<ContactData> newList = group.GetContacts();
             oldList.Add(contact);
-            oldList.Sort();
             newList.Sort();
+            oldList.Sort();
+
             Assert.AreEqual(oldList, newList);
         }
+
 
         [Test]
         public void TestRemoveContactFromGroup()
         {
+            app.Navigator.GoToHomePage();
+
+            if (app.Contacts.IsContactExists() != true)
+            {
+                ContactData newcontact = new ContactData("a");
+                newcontact.LastName = ("b");
+                app.Contacts.CreateContact(newcontact);
+            }
+            app.Navigator.GoToGroupPage();
+
+            if (app.Groups.IsGroupExists() != true)
+            {
+                GroupData newgroup = new GroupData("aaa");
+                newgroup.Header = "";
+                newgroup.Footer = "";
+                app.Groups.Create(newgroup);
+            }
+
             GroupData group = GroupData.GetAll()[0];
-            List<ContactData> oldList = group.GetContacts();
-            ContactData contact = ContactData.GetAll().First();
+
+            List<ContactData> allContacts = ContactData.GetAll();
+            ContactData contact = allContacts[0];
+            List<GroupData> allGroups = GroupData.GetAll();
+
+            for (int i = 0; i < allGroups.Count; i++)
+            {
+                if (allGroups[i].GetContacts().Count() > 0)
+                {
+                    group = allGroups[i];
+                    allContacts = group.GetContacts();
+                    contact = allContacts[0];
+                    break;
+                }
+                else if (allGroups.Count == (i + 1))
+                {
+                    group = allGroups[i];
+                    app.Contacts.AddContactToGroup(contact, group);
+                }
+            }
 
             app.Contacts.RemoveContactFromGroup(contact, group);
-
             List<ContactData> newList = group.GetContacts();
-            oldList.Remove(contact);
-            oldList.Sort();
+            allContacts.Remove(contact);
             newList.Sort();
-            Assert.AreEqual(oldList, newList);
+            allContacts.Sort();
+
+            Assert.AreEqual(allContacts, newList);
         }
     }
 }
+
