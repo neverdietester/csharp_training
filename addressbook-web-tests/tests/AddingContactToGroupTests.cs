@@ -45,13 +45,11 @@ namespace WebAddressbookTests
                     contact = ContactData.GetAll().Except(oldList).First();
                     break;
                 }
-                catch (ArgumentNullException ex)
+                catch (InvalidOperationException)
                 {
                     if ((numberOfGroups - 1) == i)
                     {
-                        ContactData newcontact = new ContactData("a");
-                        newcontact.LastName = ("b");
-                        app.Contacts.CreateContact(newcontact);
+                        app.Contacts.CreateContact(new ContactData("cc", "hh"));
                         contact = ContactData.GetAll()[0];
                     }
                 }
